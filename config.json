@@ -1,0 +1,17 @@
+{
+  "mongodbUri": "",
+  "token": "",
+  "localhost": "",
+  "prefix": "",
+  "channels": {
+    "users": ""
+  },
+  "lighthouse": {
+    "host": "",
+    "clientId": "",
+    "clientSecret": ""
+  },
+  "game": "",
+  "regions": {
+  }
+}
