@@ -1,17 +1,36 @@
 {
-  "mongodbUri": "",
   "token": "",
   "localhost": "",
   "prefix": "",
   "channels": {
     "users": ""
   },
+  "bot": {
+    "name": "",
+    "avatar": "",
+    "image": "",
+    "footer": {
+      "text": "",
+      "icon": ""
+    }
+  },
   "lighthouse": {
     "host": "",
     "clientId": "",
     "clientSecret": ""
   },
+  "instance": {
+    "password": "",
+    "git_repository": "",
+    "git_deploy_key": ""
+  },
   "game": "",
-  "regions": {
+  "timer": {
+    "minPlayer": 0,
+    "idleTime": 0
+  },
+  "region": {
+    "slug": "",
+    "provider": ""
   }
 }

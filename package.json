@@ -1,7 +1,7 @@
 {
-  "name": "regi-lighthouse",
+  "name": "regi-cascara",
   "version": "1.0.0",
-  "description": "Module to interact with Lighthouse",
+  "description": "Module for group bassed servers",
   "author": "PepperKick",
   "private": true,
   "license": "UNLICENSED",
