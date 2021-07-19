@@ -1,7 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import * as config from '../config.json';
 import axios from 'axios';
-import { ErrorMessage } from './objects/message.exception';
 import { Message, TextChannel } from 'discord.js';
 import { Server } from './objects/server.interface';
 import { MessageType } from './objects/message-types.enum';
@@ -62,11 +61,10 @@ export class BookingService {
   async handleServerStatusChange(server: Server, status: ServerStatus) {
     this.logger.log(`Received server (${server._id}) status (${status}) update callback.`);
 
-    if (status === ServerStatus.WAITING) {
-      // Only this event gets called once
+    if (status === ServerStatus.IDLE) {
       const channel = await this.bot.channels.fetch(config.channels.users) as TextChannel;
       const embed = this.generateConnectEmbed(server)
-      await channel.send("Server has been started\nMay take some time before it can be joined.", embed)
+      await channel.send("Server is now in IDLE state\nIt will be automatically closed after inactivity, make sure the game has been saved.", embed)
     } else if (status === ServerStatus.CLOSED) {
       const channel = await this.bot.channels.fetch(config.channels.users) as TextChannel;
       await channel.send(MessageService.buildTextMessage(
@@ -103,12 +101,20 @@ export class BookingService {
   }
 
   generateConnectEmbed(server: Server) {
-    const connectString = `connect ${server.ip}:${server.port}; password ${server.password};`
+    let connectString;
+
+    switch (server.game) {
+      case "minecraft":
+        connectString = `${server.ip}:${server.port}`
+        break
+      default:
+        connectString = `connect ${server.ip}:${server.port}; password ${server.password};`
+        break
+    }
 
     return MessageService.buildMessageEmbed(MessageType.SUCCESS)
       .setTitle("Server")
-      .setDescription(`The server is ready\n**Connect String**\`\`\`${connectString}\`\`\``)
-      .addField("Password", `\`${server.password}\``, true)
+      .setDescription(`The server is running\n**Connect String**\`\`\`${connectString}\`\`\``)
       .addField("Region", `\`${server.region}\``, true)
   }
 }
