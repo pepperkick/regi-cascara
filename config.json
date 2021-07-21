@@ -27,7 +27,8 @@
   "game": "",
   "timer": {
     "minPlayer": 0,
-    "idleTime": 0
+    "idleTime": 0,
+    "waitTime": 0
   },
   "region": {
     "slug": "",

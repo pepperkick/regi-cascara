@@ -12,6 +12,7 @@ export interface Server {
 	closePref: {
 		minPlayers: number
 		idleTime: number
+		waitTime: number
 	},
 	password: string
 	ip: string

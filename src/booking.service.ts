@@ -33,7 +33,8 @@ export class BookingService {
       callbackUrl: `${config.localhost}/booking/callback`,
       closePref: {
         minPlayers: config.timer.minPlayer,
-        idleTime: config.timer.idleTime
+        idleTime: config.timer.idleTime,
+        waitTime: config.timer.waitTime
       },
       data: {
         git_repository: config.instance.git_repository,
